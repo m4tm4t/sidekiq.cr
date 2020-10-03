@@ -12,9 +12,9 @@ dependencies:
   redis:
     github: stefanwille/crystal-redis
     version: ~> 2.0
-  pool:
-    github: ysbaddaden/pool
-    version: ~> 0.2.3
+  db:
+    github: crystal-lang/crystal-db
+    version: ">= 0.9.0"
   baked_file_system:
     github: schovi/baked_file_system
     version: ~> 0.9.5
