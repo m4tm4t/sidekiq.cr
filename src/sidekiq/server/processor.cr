@@ -37,7 +37,9 @@ module Sidekiq
 
     def start
       safe_routine(@mgr, "processor") do
-        @identity = Fiber.current.object_id.to_s(36)
+        name = Fiber.current.object_id.to_s(36)
+        Fiber.current.name = name
+        @identity = name
         run
       end
     end
