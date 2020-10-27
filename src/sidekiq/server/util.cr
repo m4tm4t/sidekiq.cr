@@ -7,7 +7,8 @@ module Sidekiq
   module Util
     include ExceptionHandler
 
-    EXPIRY = 60 * 60 * 24
+    EXPIRY     = 60 * 60 * 24
+    FIBER_NAME = "watchdog"
 
     def watchdog(ctx, last_words)
       yield
@@ -18,6 +19,7 @@ module Sidekiq
 
     def safe_routine(ctx, name, &block)
       spawn do
+        Fiber.current.name = FIBER_NAME
         watchdog(ctx, name, &block)
       end
     end
