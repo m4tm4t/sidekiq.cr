@@ -46,7 +46,7 @@ module Sidekiq
     class Poller
       include Util
 
-      INITIAL_WAIT = 10
+      INITIAL_WAIT = 5
 
       def initialize
         @enq = Sidekiq::Scheduled::Enq.new
@@ -83,7 +83,7 @@ module Sidekiq
       end
 
       private def wait
-        sleep(random_poll_interval)
+        sleep 0.5
       end
 
       # Calculates a random interval that is ±50% the desired average.
